@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]){
 	int userChoice, choiceUser1, choiceAdmin1;
-	int n = 0;
+	int n;
 	char check;
 	Book book[100];
 	do{
@@ -27,10 +27,10 @@ int main(int argc, char *argv[]){
 					MenuAdmin();
 					while(1){
 						if(scanf("%d", &choiceAdmin1) != 1){
-							printf("\033[31m\nERROR.YOU MUST ENTER [1][2][3][4][5][6][0]:\033[0m ");
+							printf("\033[31m\nERROR!!!YOU MUST ENTER [1][2][3][4][5][6][0]:\033[0m ");
 							while((check = getchar()) != '\n' && check != EOF);
 						}else if(choiceAdmin1 < 0 || choiceAdmin1 > 7){
-							printf("\033[31m\nERROR.YOU MUST ENTER [1][2][3][4][5][6][0]:\033[0m ");
+							printf("\033[31m\nERROR!!!YOU MUST ENTER [1][2][3][4][5][6][0]:\033[0m ");
 						}else{
 							break;
 						}
@@ -41,8 +41,11 @@ int main(int argc, char *argv[]){
 							saveBookToFile(book,n);
 							break;
 						case 2:
+							DeleteBook(book,&n);
 							break;
 						case 3:
+							EditBook(book,n);
+							saveBookToFile(book,n);
 							break;
 						case 4:
 							showAllBookFile(book, n);
@@ -53,7 +56,7 @@ int main(int argc, char *argv[]){
 							Status();
 							break;
 					}
-				}while(choiceAdmin1 != 0);
+				}while(choiceAdmin1 != 0 );
 				break;
 			case 2:
 				User();
