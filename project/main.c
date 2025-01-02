@@ -4,9 +4,9 @@
 #include<conio.h>
 
 int main(int argc, char *argv[]){
-	int userChoice, choiceUser1, choiceAdmin1;
+	int userChoice, choiceUser1, choiceAdmin1, choiceSort;
 	int n;
-	char check;
+	char check,checkSort;
 	Book book[100];
 	do{
 		menu();
@@ -27,10 +27,10 @@ int main(int argc, char *argv[]){
 					MenuAdmin();
 					while(1){
 						if(scanf("%d", &choiceAdmin1) != 1){
-							printf("\033[31m\nERROR!!!YOU MUST ENTER [1][2][3][4][5][6][0]:\033[0m ");
+							printf("\033[31m\nERROR!!!YOU MUST ENTER [1][2][3][4][5][6][7][0]:\033[0m ");
 							while((check = getchar()) != '\n' && check != EOF);
-						}else if(choiceAdmin1 < 0 || choiceAdmin1 > 7){
-							printf("\033[31m\nERROR!!!YOU MUST ENTER [1][2][3][4][5][6][0]:\033[0m ");
+						}else if(choiceAdmin1 < 0 || choiceAdmin1 > 8){
+							printf("\033[31m\nERROR!!!YOU MUST ENTER [1][2][3][4][5][6][7][0]:\033[0m ");
 						}else{
 							break;
 						}
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
 							saveBookToFile(book,n);
 							break;
 						case 2:
-							DeleteBook(book,&n);
+							DeleteBook(book,n);
 							break;
 						case 3:
 							EditBook(book,n);
@@ -51,9 +51,10 @@ int main(int argc, char *argv[]){
 							showAllBookFile(book, n);
 							break;
 						case 5:
+							SearchBook(book,n);
 							break;
 						case 6:
-							Status();
+							MenuSorting(book,n);
 							break;
 					}
 				}while(choiceAdmin1 != 0 );
